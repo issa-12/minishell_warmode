@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   builtin_exit.c                                     :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: rdennaou <rdennaou@student.42.fr>          +#+  +:+       +#+        */
+/*   By: isalayan <isalayan@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2024/12/23 10:20:53 by rdennaou          #+#    #+#             */
-/*   Updated: 2025/01/02 17:32:21 by skreik           ###   ########.fr       */
+/*   Created: 2024/12/23 10:20:53 by isalayan          #+#    #+#             */
+/*   Updated: 2025/01/02 17:32:21 by isalayan         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,7 +27,7 @@ int	adjust_number(int num)
 	return (num);
 }
 
-void	validate_numeric_input(char *input)
+void	validate_numeric_input(char *input, t_env *env)
 {
 	char		*endptr;
 	long long	num;
@@ -39,26 +39,31 @@ void	validate_numeric_input(char *input)
 		if (*endptr != '\0' || errno == ERANGE)
 		{
 			ft_putendl_fd("minishell : exit: numeric argument required", 2);
-			g_v = 2;
+			env->exit_code = 2;
 		}
 		else
 		{
 			num = adjust_number(num);
-			g_v = (int)num;
+			env->exit_code = (int)num;
 		}
+		g_v = 0;
 	}
 	else
 	{
 		ft_putendl_fd("minishell : exit: numeric argument required", 2);
-		g_v = 2;
+		env->exit_code = 2;
+		g_v = 0;
 	}
 }
 
 void	cleanup_and_exit(t_env *myenv, t_parser *parser)
 {
+	int	exit_code;
+
+	exit_code = myenv->exit_code;
 	ft_free_env(&myenv);
 	free_parser(parser);
-	exit(g_v);
+	exit(exit_code);
 }
 
 void	builtin_exit(t_parser *parser, t_env *myenv)
@@ -68,17 +73,18 @@ void	builtin_exit(t_parser *parser, t_env *myenv)
 	handle_exit_input(parser);
 	if (parser->input == NULL)
 	{
+		myenv->exit_code = 0;
 		g_v = 0;
 		cleanup_and_exit(myenv, parser);
 	}
 	else if (parser->input[1])
 	{
-		if (handle_exit_arguments(parser->input) != 1)
+		if (handle_exit_arguments(parser->input, myenv) != 1)
 			cleanup_and_exit(myenv, parser);
 	}
 	else
 	{
-		validate_numeric_input(parser->input[0]);
+		validate_numeric_input(parser->input[0], myenv);
 		cleanup_and_exit(myenv, parser);
 	}
 }

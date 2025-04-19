@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   main.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: skreik <skreik@student.42.fr>              +#+  +:+       +#+        */
+/*   By: isalayan <isalayan@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2024/08/14 14:10:16 by skreik            #+#    #+#             */
-/*   Updated: 2025/01/16 13:14:58 by skreik           ###   ########.fr       */
+/*   Created: 2024/08/14 14:10:16 by isalayan          #+#    #+#             */
+/*   Updated: 2025/04/12 14:33:31 by isalayan         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -42,7 +42,7 @@ int	initiate_input(char *line, t_tokenlist **token_list,
 	*parser = create_parser();
 	if (handle_parser_error(*parser, *token_list, line))
 		return (0);
-	value = parse_tokens(parser, *token_list, *my_env);
+	value = parse_tokens(parser, *token_list, my_env);
 	if (handle_parse_tokens_error(line, *token_list, *parser, value))
 		return (0);
 	return (1);
