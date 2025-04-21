@@ -48,7 +48,7 @@ int	handle_parsing_identifier_helper_errors(t_input *tokens, t_parser *curr,
 	{
 		if (curr->command == NULL)
 		{
-			ft_putendl_fd("command not found", 2);
+			ft_putendl_fd("minishell: command not found", 2);
 			env->exit_code = 127;
 			return (g_v = 0, -1);
 		}
@@ -78,7 +78,7 @@ int	handle_parsing_identifier_helper(t_input *tokens, t_parser *curr,
 			free(value);
 			return (-1);
 		}
-		ft_putendl_fd("command not found", 2);
+		ft_putendl_fd("minishell: command not found", 2);
 		env->exit_code = 127;
 		free(value);
 		return (g_v = 0, -1);

@@ -6,7 +6,7 @@
 /*   By: isalayan <isalayan@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/08/30 11:05:26 by isalayan          #+#    #+#             */
-/*   Updated: 2025/04/19 11:56:35 by isalayan         ###   ########.fr       */
+/*   Updated: 2025/04/19 12:17:37 by isalayan         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -374,8 +374,9 @@ void						errmsg_cmd(char *command, char *detail,
 void						add_to_input_args(char *value, t_parser *curr);
 bool						cmd_is_dir(char *cmd);
 t_env						*manage_env_i(void);
-int	handle_parsing_quotes(t_input *tokens, t_parser *curr, t_env *env);
-char	*process_variable(char *x_str, t_env *env);
+int							handle_parsing_quotes(t_input *tokens,
+								t_parser *curr, t_env *env);
+char						*process_variable(char *x_str, t_env *env);
 
 //--------------------------------------printing
 void						print_tokens(const t_tokenlist *list);

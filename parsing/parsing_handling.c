@@ -19,20 +19,20 @@ int	handle_parsing_quotes_helper_2(t_input *tokens, char *value, t_env *env)
 	{
 		if (!strcmp(tokens->value, "$?"))
 		{
-			ft_putendl_fd("bash: command not found", 2);
+			ft_putendl_fd("minishell: command not found", 2);
 			env->exit_code = 127;
 			return (g_v = 0, -1);
 		}
 		else
 		{
-			ft_putendl_fd("bash: command not found", 2);
+			ft_putendl_fd("minishell: command not found", 2);
 			env->exit_code = 127;
 			return (g_v = 0, -1);
 		}
 	}
 	else
 	{
-		ft_putendl_fd("command not found", 2);
+		ft_putendl_fd("minishell: command not found", 2);
 		env->exit_code = 127;
 		return (g_v = 0, -1);
 	}
@@ -107,8 +107,12 @@ int	handle_parsing_quotes(t_input *tokens, t_parser *curr, t_env *env)
 	else
 		value = ft_strdup(temp_value);
 	free(temp_value);
-	if (value == NULL || *value == '\0')
+	if (curr->command && !ft_strcmp(curr->command, "export") && *value == '\0')
+		return (free(value), env->exit_code = 1, printf("ERROR\n"), -1);
+	if (value == NULL)
 		return (1);
+	else if (*value == '\0')
+		return (free(value), 1);
 	else if (handle_parsing_quotes_main_helper(tokens, curr, env, value) == -1)
 		return (-1);
 	return (0);

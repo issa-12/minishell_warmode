@@ -18,13 +18,13 @@ void	handle_exit_input(t_parser *parser)
 		parser->input[0] = remove_paired_quotes(parser->input[0]);
 }
 
-int	adjust_number(int num)
+int	wrap_to_byte(int n)
 {
-	if (num < 0)
-		num = (num % 256 + 256) % 256;
-	else if (num >= 256)
-		num = num % 256;
-	return (num);
+	while (n < 0)
+		n += 256;
+	while (n >= 256)
+		n -= 256;
+	return (n);
 }
 
 void	validate_numeric_input(char *input, t_env *env)
@@ -43,7 +43,7 @@ void	validate_numeric_input(char *input, t_env *env)
 		}
 		else
 		{
-			num = adjust_number(num);
+			num = wrap_to_byte(num);
 			env->exit_code = (int)num;
 		}
 		g_v = 0;

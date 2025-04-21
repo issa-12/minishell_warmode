@@ -6,7 +6,7 @@
 /*   By: isalayan <isalayan@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/08/14 14:10:16 by isalayan          #+#    #+#             */
-/*   Updated: 2025/04/12 14:33:31 by isalayan         ###   ########.fr       */
+/*   Updated: 2025/04/21 13:12:58 by isalayan         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -74,8 +74,8 @@ int	main(int argc, char **argv, char **envp)
 	}
 	return (ft_free_env(&my_env), EXIT_SUCCESS);
 }
-/*
-int     main1(int argc, char **argv, char **envp)
+
+/*int     main(int argc, char **argv, char **envp)
 {
 	(void)argc;
 	(void)argv;
@@ -120,7 +120,7 @@ int     main1(int argc, char **argv, char **envp)
 			free_token_list(token_list); // Free token list
 			continue ;
 		}
-		value = parse_tokens(&parser, token_list, *my_env);
+		value = parse_tokens(&parser, token_list, my_env);
 		if (!parser || !parser->command || value == -1)
 		{
 			free(line);
@@ -137,5 +137,4 @@ int     main1(int argc, char **argv, char **envp)
 	}
 	ft_free_env(&my_env);
 	return (EXIT_SUCCESS);
-}
-*/
+}*/
