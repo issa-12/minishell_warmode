@@ -12,15 +12,17 @@
 
 #include "mini_shell.h"
 
-char	*add_path(char *str)
+char	*add_path(char *str, t_env *env)
 {
 	char	*new_path;
+	char	*path;
 
 	if (str[0] == '.')
 	{
 		if (str[1] == '.')
 		{
-			new_path = ft_str_join("$OLDPWD", str + 2);
+			path = process_variable("$PWD", env);
+			new_path = ft_str_join(get_directory_part(path), str + 2);
 			free(str);
 			return (new_path);
 		}

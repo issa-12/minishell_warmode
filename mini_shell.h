@@ -6,7 +6,7 @@
 /*   By: isalayan <isalayan@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/08/30 11:05:26 by isalayan          #+#    #+#             */
-/*   Updated: 2025/04/19 12:17:37 by isalayan         ###   ########.fr       */
+/*   Updated: 2025/04/21 17:31:33 by isalayan         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -158,13 +158,13 @@ int							handle_unset_options(char **operations,
 								bool *save_val);
 int							handle_operations_dash(t_parser *parser,
 								t_env *env);
-int							handle_input_dash(t_parser *parser,
-								bool *save_val, t_env *env);
+int							handle_input_dash(t_parser *parser, bool *save_val,
+								t_env *env);
 void						process_dollar_strings(char **strs, t_env *env);
 void						ctrl_c_press_heredoc(int sig);
 int							get_last_input_redirection(int *redirection);
-int							manage_redirection_output(t_parser *parser,
-								int *fd, t_env *env);
+int							manage_redirection_output(t_parser *parser, int *fd,
+								t_env *env);
 void						configure_child_signals(void);
 void						restore_signals(void);
 void						ignore_signals(void);
@@ -206,6 +206,8 @@ int							handle_parser_error(t_parser *parser,
 								t_tokenlist *token_list, char *line);
 void						cleanup_resources(char *line,
 								t_tokenlist *token_list, t_parser *parser);
+char						*get_directory_part_helper(size_t path_len,
+								char *temp_path, char *dir_part);
 // void                        ctrl_c_press_here(int signal);
 void						process_dollar_strings(char **strs, t_env *env);
 char						*retreive_path(t_env env);
@@ -238,7 +240,6 @@ void						process_variable_helper(int *i, char **str,
 								t_quoted *q, t_env *env);
 void						expand_and_replace(char **str, char *prefix,
 								int end);
-char						*add_path(char *str);
 char						*check_tilde(char *str);
 
 char						**add_string_to_2d_array(char **array,
@@ -260,7 +261,7 @@ int							ft_haschar(char *str, char c);
 char						*ft_escape_char(char *str);
 void						free_2d_array(char **array);
 char						*process_variable(char *x_str, t_env *env);
-char						*add_path(char *str);
+char						*add_path(char *str, t_env *env);
 char						*ft_trim_string(char *str);
 int							ft_doublecharlen(t_env *env);
 void						free_2d_array(char **input_array);
@@ -280,7 +281,7 @@ int							check_input_end(char *str);
 char						*remove_quotes_new_new(const char *str);
 char						*remove_paired_quotes(char *str);
 char						*remove_closing_quote_after_equals(char *str);
-
+char						*get_directory_part(const char *path);
 //---------------------------tokens
 
 t_input						*create_token(t_type type, const char *value);

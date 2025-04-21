@@ -6,7 +6,7 @@
 /*   By: isalayan <isalayan@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/03 13:52:20 by isalayan          #+#    #+#             */
-/*   Updated: 2025/04/19 12:49:25 by isalayan         ###   ########.fr       */
+/*   Updated: 2025/04/21 17:11:14 by isalayan         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -66,7 +66,7 @@ void	process_files(char **files, t_env *env)
 	i = -1;
 	while (files[++i])
 	{
-		file = add_path(files[i]);
+		file = add_path(files[i], env);
 		filee = remove_paired_quotes(file);
 		files[i] = process_variable(filee, env);
 		free(filee);

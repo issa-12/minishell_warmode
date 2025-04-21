@@ -61,6 +61,7 @@ SRCS                = $(PARSE_DIR)parsing_creation.c \
                       $(EXEC_DIR)execute_helpers_3.c \
                       $(EXEC_DIR)execute_helpers_4.c \
                       $(EXEC_DIR)execute_helpers_5.c \
+                      $(EXEC_DIR)utils.c \
                       $(SIGNALS_DIR)signals_0.c\
                       $(SIGNALS_DIR)signals_1.c\
                       $(SRC_DIR)main_fts.c \

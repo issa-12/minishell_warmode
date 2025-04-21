@@ -36,38 +36,38 @@ void	print_2d_array(char **array)
 	}
 }
 
-void	print_parser(t_parser *parser)
-{
-	t_parser	*curr;
+// void	print_parser(t_parser *parser)
+// {
+// 	t_parser	*curr;
 
-	curr = parser;
-	while (curr)
-	{
-		printf("Command: %s\n", curr->command ? curr->command : "None");
-		printf("Input:\n");
-		print_2d_array(curr->input);
-		printf("Operations:\n");
-		print_2d_array(curr->operations);
-		printf("Redirections:\n");
-		if (curr->redirection)
-		{
-			for (int i = 0; curr->redirection[i] != '\0'; i++)
-			{
-				printf("%d\n", curr->redirection[i]);
-			}
-		}
-		printf("Delimiter: \n");
-		print_2d_array(curr->delimeter);
-		printf("Infile:\n");
-		print_2d_array(curr->infile);
-		printf("Outfile:\n");
-		print_2d_array(curr->outfile);
-		printf("args:\n");
-		print_2d_array(curr->args);
-		printf("-----\n");
-		curr = curr->next;
-	}
-}
+// 	curr = parser;
+// 	while (curr)
+// 	{
+// 		printf("Command: %s\n", curr->command ? curr->command : "None");
+// 		printf("Input:\n");
+// 		print_2d_array(curr->input);
+// 		printf("Operations:\n");
+// 		print_2d_array(curr->operations);
+// 		printf("Redirections:\n");
+// 		if (curr->redirection)
+// 		{
+// 			for (int i = 0; curr->redirection[i] != '\0'; i++)
+// 			{
+// 				printf("%d\n", curr->redirection[i]);
+// 			}
+// 		}
+// 		printf("Delimiter: \n");
+// 		print_2d_array(curr->delimeter);
+// 		printf("Infile:\n");
+// 		print_2d_array(curr->infile);
+// 		printf("Outfile:\n");
+// 		print_2d_array(curr->outfile);
+// 		printf("args:\n");
+// 		print_2d_array(curr->args);
+// 		printf("-----\n");
+// 		curr = curr->next;
+// 	}
+// }
 
 // void print_tokens(const t_tokenlist *list)
 // {

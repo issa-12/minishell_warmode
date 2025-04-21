@@ -6,7 +6,7 @@
 /*   By: isalayan <isalayan@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/12 14:45:20 by isalayan          #+#    #+#             */
-/*   Updated: 2025/04/19 11:59:13 by isalayan         ###   ########.fr       */
+/*   Updated: 2025/04/21 17:00:28 by isalayan         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -93,67 +93,3 @@ void	process_variable_helper_elseif(int *i, t_strings *s,
 		free(s->prefix);
 	}
 }
-
-/*
-   char *process_variable(char *x_str, t_env *env)
-   {
-   int i;
-   int end;
-   char *to_expand;
-   int start;
-   char *expanded;
-   t_quoted q;
-   char *temp;
-   char *prefix;
-   char *str;
-
-   i = 0;
-   end = 0;
-   initialize_process_variable(&q);
-   to_expand = NULL;
-   expanded = NULL;
-   start = 0;
-   if (ft_strchr(x_str, '$') == NULL && x_str[0] != '~')
-   return (remove_paired_quotes(ft_strdup(x_str)));
-   str = ft_strdup(x_str);
-   str = check_tilde(str);
-   while (str[i])
-   {
-   check_quotes_status_and_update(&q, str[i]);
-   if (str[i] == '$')
-   {
-   prefix = create_array_till_dollar(str, i);
-   start = i;
-   end = find_end_variable(str, i);
-   to_expand = ft_strndup(str + start, end - start);
-   expanded = check_char_after_dollar(to_expand, q.inside_quote, env);
-   free(to_expand);
-   if (expanded == NULL && q.inside_quote != 2)
-   {
-   expand_and_replace(&str, prefix, end);
-   i = ft_strlen(prefix) - 1;
-   free(prefix);
-   }
-   else if (expanded)
-   {
-   temp = ft_strjoin(prefix, expanded);
-   free(prefix);
-   prefix = temp;
-   expand_and_replace(&str, prefix, end);
-   i = ft_strlen(prefix) - 1;
-   free(temp);
-   }
-   else
-   {
-   i = end;
-   free(prefix);
-   }
-   check_quotes_till_end(str, &q, start, end);
-   }
-   i++;
-   }
-   return (remove_paired_quotes(str));
-   }
-
-*/
-// export hi$?=hi'$USER'''$USER''"$USER"$?$HOME$9.
